@@ -1,6 +1,6 @@
 (ns tech.v3.datatype.pprint
   (:require [tech.v3.datatype.protocols :as dtype-proto]
-            [tech.v3.datatype.packing :as packing])
+            [tech.v3.datatype.packing :as packing] :reload-all)
   (:import [tech.v3.datatype Buffer]))
 
 
@@ -31,8 +31,13 @@
                        (.append builder
                                 (formatter val))
                        (.append builder ", "))
-                     (StringBuilder.)))]
-    (.toString builder)))
+                     (StringBuilder.)))
+        len (.length builder)]
+    (if (> len 0)
+      (-> builder
+          (.delete (- len 2) len) ; remove the last ", "
+          (.toString))
+      "")))
 
 
 (defn buffer->string

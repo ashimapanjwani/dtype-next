@@ -1,11 +1,11 @@
-(defproject cnuernber/dtype-next "6.00-beta-22-SNAPSHOT"
+(defproject cnuernber/dtype-next "6.02-SNAPSHOT"
   :description "A Clojure library designed to aid in the implementation of high performance algorithms and systems."
   :url "http://github.com/cnuernber/dtype-next"
   :license {:name "EPL-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure              "1.10.2-alpha1"]
-                 [org.ow2.asm/asm                  "7.1"]
-                 [insn                             "0.4.0"]
+                 [org.ow2.asm/asm                  "9.0"]
+                 [insn                             "0.5.1"]
                  [camel-snake-kebab                "0.4.2"]
                  [primitive-math                   "0.1.6"]
                  [it.unimi.dsi/fastutil            "8.2.1"]
@@ -22,8 +22,8 @@
                              [com.taoensso/nippy "3.1.0-RC1"]
                              [ch.qos.logback/logback-classic "1.1.3"]]
               :test-paths ["neanderthal" "test"]}
-             :jdk-16 {:jvm-opts ["--add-modules" "jdk.incubator.foreign" "-Dforeign.restricted=permit"]
-                      :source-paths ["src" "src_jdk_16"]}
+             :jdk-16 {:jvm-opts ["--add-modules" "jdk.incubator.foreign" "-Dforeign.restricted=permit" "--add-opens" "java.base/java.lang=ALL-UNNAMED"]
+                      }
              :codox
              {:dependencies [[codox-theme-rdash "0.1.2"]]
               :plugins [[lein-codox "0.10.7"]]
@@ -47,6 +47,8 @@
                                    tech.v3.datatype.nippy
                                    tech.v3.datatype.rolling
                                    tech.v3.datatype.jna
+                                   tech.v3.datatype.ffi
+                                   tech.v3.datatype.struct
                                    tech.v3.tensor.dimensions
                                    tech.v3.tensor.color-gradients
                                    tech.v3.datatype.reductions
